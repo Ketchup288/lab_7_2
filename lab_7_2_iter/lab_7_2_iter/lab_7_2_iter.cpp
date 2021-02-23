@@ -6,7 +6,7 @@
 using namespace std;
 void Create(int** a, const int rowCount, const int colCount, const int Low, const int High);
 void Print(int** a, const int rowCount, const int colCount);
-int MaxMin(int** a, const int rowCount, const int colCount);
+int MaxMinOdd(int** a, const int rowCount, const int colCount);
 
 int main()
 {
@@ -25,7 +25,7 @@ int main()
 		a[i] = new int[colCount];
 	Create(a, rowCount, colCount, Low, High);
 	Print(a, rowCount, colCount);
-	int minMax = MaxMin(a, rowCount, colCount);
+	int minMax = MaxMinOdd(a, rowCount, colCount);
 	cout << minMax << endl;
 	for (int i = 0; i < rowCount; i++)
 		delete[] a[i];
@@ -53,7 +53,7 @@ void Print(int** a, const int rowCount, const int colCount)
 	cout << endl;
 }
 
-int MaxMin(int** a, const int rowCount, const int colCount)
+int MaxMinOdd(int** a, const int rowCount, const int colCount)
 {
 	int min = 0, max = 0;
 	int row = 1; // допоміжна змінна строки, яка потрібна, щоб не починати цикл, як i = 1;
