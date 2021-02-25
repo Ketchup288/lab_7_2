@@ -6,7 +6,7 @@ using namespace std;
 void Create(int** a, const int rowCount, const int colCount,
 	const int Low, const int High, int i, int j);
 void Print(int** a, const int rowCount, const int colCount, int i, int j);
-void MaxMinOddRows(int** a, const int rowCount, const int colCount, int rowNo, int& max, int row);
+void MaxMinRows(int** a, const int rowCount, const int colCount, int rowNo, int& max, int row);
 void MinRow(int** a, const int rowNo, const int colCount, int colNo, int& min);
 void OddRows(int** a, const int rowCount, const int colCount, int rowNo, int& max);
 
@@ -20,8 +20,8 @@ int main()
 
 	int rowCount; // рядки матриці
 	int colCount; // колонки матриці
-	cout << "n = "; cin >> rowCount;
-	cout << "k = "; cin >> colCount;
+	cout << "k = "; cin >> rowCount;
+	cout << "n = "; cin >> colCount;
 
 	int** a = new int* [rowCount];
 	for (int i = 0; i < rowCount; i++)
@@ -85,24 +85,18 @@ void MaxMinRows(int** a, const int rowCount, const int colCount, int rowNo, int&
 
 }
 
-void OddRows(int** a, const int rowCount, const int colCount, int rowNo, int& max) { 
-	if (rowNo == 0) { // оскільки в цілочисельному діленні 0 % 2 = 0, а 0 - це непарне число, яке потрібне нам, тому для нього виділено окремий блок
-		MaxMinRows(a, rowCount, colCount, 0, max);
-		OddRows(a, rowCount, colCount, 1, max);
+void OddRows(int** a, const int rowCount, const int colCount, int rowNo, int& max) {
+	if (rowNo % 2 != 0) { // провірка чи рядок непарний 
+		if (rowNo < rowCount - 1) { // перевірка чи ще потрібно провіряти далі, чи рядки закінчились
+			MaxMinRows(a, rowCount, colCount, rowNo, max);
+			OddRows(a, rowCount, colCount, rowNo + 1, max);
+		}
 	}
 	else {
-		if ((rowNo % 2) != 0) { // провірка чи рядок непарний 
-			if (rowNo < rowCount - 1) { // перевірка чи ще потрібно провіряти далі, чи рядки закінчились
-				MaxMinRows(a, rowCount, colCount, rowNo + 1, max);
-				OddRows(a, rowCount, colCount, rowNo + 1, max);
-			}
+		if (rowNo < rowCount - 1) // перевірка чи ще потрібно провіряти далі, чи рядки закінчились
+		{
+			OddRows(a, rowCount, colCount, rowNo + 1, max);
 		}
-		else {
-			if (rowNo < rowCount - 1) // перевірка чи ще потрібно провіряти далі, чи рядки закінчились
-			{
-				OddRows(a, rowCount, colCount, rowNo + 1, max);
-			}
-		}
-		// *Примітка: початок рахунку строк матриці буде починатись з 1, а не з 0ж
 	}
 }
+

@@ -16,8 +16,8 @@ int main()
 	int High = 31; // максимальне число в массиві
 	int rowCount; // рядки масиву
 	int colCount; // колонки масиву
-	cout << "n = "; cin >> rowCount;
-	cout << "k = "; cin >> colCount;
+	cout << "k = "; cin >> rowCount;
+	cout << "n = "; cin >> colCount;
 
 
 	int** a = new int* [rowCount];
@@ -58,7 +58,7 @@ int MaxMinOdd(int** a, const int rowCount, const int colCount)
 	int min, max; 
 	for (int i = 0; i < rowCount; i++)
 	{
-		if (i % 2 == 0 || i == 0) // визначає непарні рядки
+		if (i % 2 != 0) // визначає непарні рядки
 		{
 			min = a[i][0];
 			for (int j = 1; j < colCount; j++) {
@@ -66,13 +66,13 @@ int MaxMinOdd(int** a, const int rowCount, const int colCount)
 					min = a[i][j];
 				}
 			}
-			if (i == 0) { // для уникнення помилок при першій ітерації
+			if (i == 1) { // для уникнення помилок при першій ітерації
 				max = min;
 		}
 			if (min > max) {
 				max = min;
 			}
-		} // *примітка: початок рахунку рядків матриці починається з 1, а не з 0
+		} 
 	} 
 	return max;
 }
