@@ -78,7 +78,7 @@ void MaxMinRows(int** a, const int rowCount, const int colCount, int rowNo, int&
 {
 	int min = a[rowNo][0];
 	MinRow(a, rowNo, colCount, 1, min); // Викликає функцію MinRow, яка визначає найменьше значення в данному рядку
-	if (rowNo == 0) // Якщо це перший рядок, то для уникнення помилки max стає min
+	if (rowNo == 1)
 		max = min;
 	if (min > max)
 		max = min;
