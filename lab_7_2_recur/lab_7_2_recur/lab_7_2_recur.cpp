@@ -29,13 +29,13 @@ int main()
 	Create(a, rowCount, colCount, Low, High, 0, 0);
 	Print(a, rowCount, colCount, 0, 0);
 	
-	int max = 0; // в цю змінну буде передаватись результат виконання програми 
-	OddRows(a, rowCount,colCount, 0, max);
+	int max;
+	OddRows(a, rowCount, colCount, 0, max);
 	if (rowCount > 2 && colCount > 2) {
 		cout << "Max from min numbers (odd rows) = " << max << endl;
 	}
 	else {
-		cout << "There are no odd rows. Please, try again and make more rows." << endl;
+		cout << "You've inputed just " << rowCount << " rows and " << colCount << " colons. Please, try again and input 3 or more rows and colons."  << endl;
 	}
 
 	for (int i = 0; i < rowCount; i++)
