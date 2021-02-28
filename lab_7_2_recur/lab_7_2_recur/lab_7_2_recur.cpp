@@ -31,7 +31,12 @@ int main()
 	
 	int max = 0; // в цю змінну буде передаватись результат виконання програми 
 	OddRows(a, rowCount,colCount, 0, max);
-	cout << max << endl;
+	if (rowCount > 2 && colCount > 2) {
+		cout << "Max from min numbers (odd rows) = " << max << endl;
+	}
+	else {
+		cout << "There are no odd rows. Please, try again and make more rows." << endl;
+	}
 
 	for (int i = 0; i < rowCount; i++)
 		delete[] a[i];
