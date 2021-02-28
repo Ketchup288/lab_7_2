@@ -6,7 +6,7 @@ using namespace std;
 void Create(int** a, const int rowCount, const int colCount,
 	const int Low, const int High, int i, int j);
 void Print(int** a, const int rowCount, const int colCount, int i, int j);
-void MaxMinRows(int** a, const int rowCount, const int colCount, int rowNo, int& max, int row);
+void MaxMinRows(int** a, const int rowCount, const int colCount, int rowNo, int& max);
 void MinRow(int** a, const int rowNo, const int colCount, int colNo, int& min);
 void OddRows(int** a, const int rowCount, const int colCount, int rowNo, int& max);
 
@@ -31,12 +31,8 @@ int main()
 	
 	int max;
 	OddRows(a, rowCount, colCount, 0, max);
-	if (rowCount > 2 && colCount > 2) {
-		cout << "Max from min numbers (odd rows) = " << max << endl;
-	}
-	else {
-		cout << "You've inputed just " << rowCount << " rows and " << colCount << " colons. Please, try again and input 3 or more rows and colons."  << endl;
-	}
+
+	cout << "Max from min numbers (odd rows) = " << max << endl;
 
 	for (int i = 0; i < rowCount; i++)
 		delete[] a[i];
@@ -82,7 +78,7 @@ void MinRow(int** a, const int rowNo, const int colCount, int colNo, int& min)
 void MaxMinRows(int** a, const int rowCount, const int colCount, int rowNo, int& max)
 {
 	int min = a[rowNo][0];
-	MinRow(a, rowNo, colCount, 1, min); // Викликає функцію MinRow, яка визначає найменьше значення в данному рядку
+	MinRow(a, rowNo, colCount, 0, min); // Викликає функцію MinRow, яка визначає найменьше значення в данному рядку
 	if (rowNo == 1)
 		max = min;
 	if (min > max)
@@ -92,13 +88,13 @@ void MaxMinRows(int** a, const int rowCount, const int colCount, int rowNo, int&
 
 void OddRows(int** a, const int rowCount, const int colCount, int rowNo, int& max) {
 	if (rowNo % 2 != 0) { // провірка чи рядок непарний 
-		if (rowNo < rowCount - 1) { // перевірка чи ще потрібно провіряти далі, чи рядки закінчились
+		if (rowNo < rowCount) { // перевірка чи ще потрібно провіряти далі, чи рядки закінчились
 			MaxMinRows(a, rowCount, colCount, rowNo, max);
 			OddRows(a, rowCount, colCount, rowNo + 1, max);
 		}
 	}
 	else {
-		if (rowNo < rowCount - 1) // перевірка чи ще потрібно провіряти далі, чи рядки закінчились
+		if (rowNo < rowCount) // перевірка чи ще потрібно провіряти далі, чи рядки закінчились
 		{
 			OddRows(a, rowCount, colCount, rowNo + 1, max);
 		}
