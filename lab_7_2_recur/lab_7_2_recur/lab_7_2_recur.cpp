@@ -31,8 +31,12 @@ int main()
 	
 	int max;
 	OddRows(a, rowCount, colCount, 0, max);
-
-	cout << "Max from min numbers (odd rows) = " << max << endl;
+	if (rowCount <= 2 || colCount <= 2) {
+		cout << "Please, try again, but make more rows and columns" << endl;
+	}
+	else {
+		cout << "Max from min numbers (odd rows): " << max << endl;
+	}
 
 	for (int i = 0; i < rowCount; i++)
 		delete[] a[i];

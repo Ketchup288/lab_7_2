@@ -17,11 +17,11 @@ namespace test
 							{200, 500, 700}, // 2
 							{170, 180, 160}, // 3
 							{1000, 2000, 3000}, // 4
-							{110, 120, 130} }; // 5
+							{210, 220, 170} }; // 5
 			int* pb[6] = { b[0], b[1], b[2], b[3], b[4], b[5] };
 			int max = 0;
 			OddRows(pb, 6, 3, 0, max); 
-			Assert::AreEqual(max, 160);
+			Assert::AreEqual(max, 170);
 		}
 	};
 }
